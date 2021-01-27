@@ -2,8 +2,8 @@
 title: "Perception of Facts During the 2016 Election"
 author: "Steven Friedman"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ## 1. Background
@@ -52,7 +52,7 @@ awareness = extract.awareness(dataset)
 
 Americans of all age groups use social media to get their political news, although it skews younger. Interestingly, most respondents use social media for political news either every day or never. 
 
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE, fig.height=4, fig.width=8}
 source('../lib/prepare_plots_tables.R')
 p = social.usage.by.age.hist(media.consumption, demographics)
 p
@@ -64,19 +64,19 @@ Respondents were asked how much they would agree that they have a good understan
 
 There is virtually no difference in the distribution of confidence across Clinton and Trump voters. Johnson and Stein voters tended to be less confident, but the sample sizes were much smaller.
 
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE, fig.height=4, fig.width=8}
 confidence.by.candidate.bar(confidence, political.affiliation)
 ```
 
 There is no observable difference among the amount of days per week that individuals get political news on social media, although one might expect overconfidence for some groups.
 
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE, fig.height=4, fig.width=8}
 confidence.by.social.bar(media.consumption, confidence)
 ```
 
 When we look at confidence across agre groups, we see a more meaningful trend. Older Americans feel they have a better understanding of political issues.
 
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE, fig.height=4, fig.width=8}
 confidence.by.age.bar(demographics, confidence)
 ```
 
@@ -88,13 +88,13 @@ Respondants were asked if they knew who had more representation in the House of 
 
 The proportion of those who got both Houses of Congress correct is plotted below broken out by which candidate they voted for in the election and their age group. It appears that older voters are more politically aware as are Clinton voters.
 
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE, fig.height=4, fig.width=8}
 congress.by.age.vote.tile(political.affiliation, demographics, awareness)
 ```
 
 A similar analysis of social media usage over age groups shows no meaningful difference with respect to social media usage and awareness of this fact.
 
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE, fig.height=4, fig.width=8}
 congress.by.age.social.tile(awareness, demographics, media.consumption)
 ```
 
@@ -118,12 +118,12 @@ knitr::kable(df)
 
 Survey respondents were asked if the believe that Barack Obama is Muslim, a piece of misinformation that had been circulating for years ahead of the 2016 election. Plotted here is the proportion in each bucket that are a little sure, moderately sure, very sure, or extremely sure of this incorrect belief.
 
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE, fig.height=4, fig.width=8}
 misinformation.by.age.vote.tile(awareness, demographics, political.affiliation)
 ```
 
 Note that social media usage doesn't appear to be very important as opposed to age or party.
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE, fig.height=4, fig.width=8}
 misinformation.by.age.social.tile(awareness, demographics, media.consumption)
 ```
 
