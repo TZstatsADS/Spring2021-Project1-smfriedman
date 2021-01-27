@@ -21,7 +21,7 @@ social.usage.by.age.hist = function(media.consumption, demographics){
     theme(axis.text.x = element_text(angle = 45, hjust=1),
           plot.title = element_text(hjust = 0.5)) +
     ggtitle("Social Media Usage for Political Information") +
-    guides(fill=guide_legend(title="Days Per Week"), color=guide_legend(title="Days Per Week")) +
+    guides(fill=guide_legend(title="Age Group"), color=guide_legend(title="Age Group")) +
     xlab("Days Per Week Spent Getting Political News From Social Media") +
     ylab("Count")
   

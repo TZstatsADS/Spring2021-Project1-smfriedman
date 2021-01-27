@@ -2,8 +2,8 @@
 title: "Perception of Facts During the 2016 Election"
 author: "Steven Friedman"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ## 1. Background
