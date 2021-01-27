@@ -82,7 +82,7 @@ confidence.by.age.bar(demographics, confidence)
 
 ## 5. Who is Right More?
 
-#### 5.1. Politics
+### 5.1. Politics
 
 Respondants were asked if they knew who had more representation in the House of Representatives and the Senate at the time of the election. At that time, both were under Republican control.
 
@@ -98,7 +98,7 @@ A similar analysis of social media usage over age groups shows no meaningful dif
 congress.by.age.social.tile(awareness, demographics, media.consumption)
 ```
 
-#### 5.2. The Economy
+### 5.2. The Economy
 
 Respondants were asked what the unemployment rate was at the time. They were given 4 choices. A noteworthy trend is that older voters tend to have a better idea of this economic indicator.
 
@@ -114,7 +114,7 @@ df = unemp.rate.by.party.table(awareness, political.affiliation)
 knitr::kable(df)
 ```
 
-#### 5.3. Misinformation
+### 5.3. Misinformation
 
 Survey respondents were asked if the believe that Barack Obama is Muslim, a piece of misinformation that had been circulating for years ahead of the 2016 election. Plotted here is the proportion in each bucket that are a little sure, moderately sure, very sure, or extremely sure of this incorrect belief.
 
