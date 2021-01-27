@@ -1,0 +1,132 @@
+---
+title: "Perception of Facts During the 2016 Election"
+author: "Steven Friedman"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+## 1. Background
+
+In the era of ["alternative facts,"](https://en.wikipedia.org/wiki/Alternative_facts) different groups maintain different views on reality. This has demonstrable implications for politics, public health, etc., and it matters whether the American electorate believes that an election was free and fair or whether vaccines work. At the same time, Americans are consuming media in different ways. Social media is becoming a more prevalent source for political news, and echo chambers have ostensibly contributed to increased polarization on fact-based issues.
+
+In this analysis, voters' confidence in their understanding of political issues is reconciled with their understanding of the facts. For voters of different age groups, political affiliations, and social media habits, perception and reality are compared with respect to government, the economy, and misinformation. Attention was taken to compare views on objective facts as opposed to opinions or ethics.
+
+## 2. Data
+
+The data comes from the  American National Election Studies' [Data Center](https://electionstudies.org/data-center/). Specifically, it is the [2016 Time Series Study](https://electionstudies.org/data-center/2016-time-series-study/), the latest election cycle currently available. Interviews were conducted over the telephone and online. Further detail on methodology is provided by ANES.
+
+```{r load libraries, warning=FALSE, message=FALSE, include=FALSE}
+# Modified from class code provided in Intro_ANES.Rmd
+packages.used=as.list(
+  c("data.table",
+    "dplyr",
+    "ggplot2",
+    "haven",
+    "Hmisc",
+    "tidyr")
+)
+
+check.pkg = function(x){
+  if(!require(x, character.only=T)) install.packages(x, 
+                                                     character.only=T,
+                                                     dependence=T)
+}
+
+lapply(packages.used, check.pkg)
+```
+
+```{r load data, warning=FALSE, message=FALSE, include=FALSE}
+source('../lib/extract_data.R')
+
+dataset = load.dataset()
+
+demographics = extract.demographics(dataset)
+political.affiliation = extract.political.affiliation(dataset)
+confidence = extract.confidence(dataset)
+media.consumption = extract.media.consumption(dataset)
+awareness = extract.awareness(dataset)
+```
+
+## 3. Social Media Usage
+
+Americans of all age groups use social media to get their political news, although it skews younger. Interestingly, most respondents use social media for political news either every day or never. 
+
+```{r echo=FALSE, warning=FALSE}
+source('../lib/prepare_plots_tables.R')
+p = social.usage.by.age.hist(media.consumption, demographics)
+p
+```
+
+## 4. Who is the Most Confident?
+
+Respondents were asked how much they would agree that they have a good understanding of political issues.
+
+There is virtually no difference in the distribution of confidence across Clinton and Trump voters. Johnson and Stein voters tended to be less confident, but the sample sizes were much smaller.
+
+```{r echo=FALSE, warning=FALSE}
+confidence.by.candidate.bar(confidence, political.affiliation)
+```
+
+There is no observable difference among the amount of days per week that individuals get political news on social media, although one might expect overconfidence for some groups.
+
+```{r echo=FALSE, warning=FALSE}
+confidence.by.social.bar(media.consumption, confidence)
+```
+
+When we look at confidence across agre groups, we see a more meaningful trend. Older Americans feel they have a better understanding of political issues.
+
+```{r echo=FALSE, warning=FALSE}
+confidence.by.age.bar(demographics, confidence)
+```
+
+## 5. Who is Right More?
+
+#### 5.1. Politics
+
+Respondants were asked if they knew who had more representation in the House of Representatives and the Senate at the time of the election. At that time, both were under Republican control.
+
+The proportion of those who got both Houses of Congress correct is plotted below broken out by which candidate they voted for in the election and their age group. It appears that older voters are more politically aware as are Clinton voters.
+
+```{r echo=FALSE, warning=FALSE}
+congress.by.age.vote.tile(political.affiliation, demographics, awareness)
+```
+
+A similar analysis of social media usage over age groups shows no meaningful difference with respect to social media usage and awareness of this fact.
+
+```{r echo=FALSE, warning=FALSE}
+congress.by.age.social.tile(awareness, demographics, media.consumption)
+```
+
+#### 5.2. The Economy
+
+Respondants were asked what the unemployment rate was at the time. They were given 4 choices. A noteworthy trend is that older voters tend to have a better idea of this economic indicator.
+
+```{r echo=FALSE, warning=FALSE}
+df = unemp.rate.by.age.table(awareness, demographics)
+knitr::kable(df)
+```
+
+Breaking out the same data by who respondants voted for in the 2016 election, we see that Trump voters are more likely than Clinton voters to overestimate the unemployment rate. This could be because of their opposition to Obama era policy and a worldview that the economy was worse off.
+
+```{r echo=FALSE, warning=FALSE}
+df = unemp.rate.by.party.table(awareness, political.affiliation)
+knitr::kable(df)
+```
+
+#### 5.3. Misinformation
+
+Survey respondents were asked if the believe that Barack Obama is Muslim, a piece of misinformation that had been circulating for years ahead of the 2016 election. Plotted here is the proportion in each bucket that are a little sure, moderately sure, very sure, or extremely sure of this incorrect belief.
+
+```{r echo=FALSE, warning=FALSE}
+misinformation.by.age.vote.tile(awareness, demographics, political.affiliation)
+```
+
+Note that social media usage doesn't appear to be very important as opposed to age or party.
+```{r echo=FALSE, warning=FALSE}
+misinformation.by.age.social.tile(awareness, demographics, media.consumption)
+```
+
+## 6. Conclusion
+
+Although it may be easy to blame social media usage for misinformation, it doesn't appear to be as good of a predictor of the population's perception of reality. Rather, partisanship seems to be more important.

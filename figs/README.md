@@ -2,4 +2,4 @@
 
 ### Figs folder
 
-The figs directory contains the figures. This directory only contains generated files; that is, one should always be able to delete the contents and regenerate them.
+This directory contains figured used in the main analysis and some supplementary ones produced but not used. This and /figs are populated by /lib/save_plots_tables.

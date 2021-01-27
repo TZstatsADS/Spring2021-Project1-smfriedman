@@ -2,5 +2,5 @@
 
 ### Output folder
 
-The output directory contains analysis output, processed datasets, logs, or other processed things.
+The output directory contains some .Rda files that are the output of the main analysis. This folder and /figs are populated by /lib/save_plots_tables.R
 

@@ -2,5 +2,6 @@
 
 ### Data folder
 
-The data directory contains data used in the analysis. This is treated as read only; in paricular the R/python files are never allowed to write to the files in here. Depending on the project, these might be csv files, a database, and the directory itself may have subdirectories.
+Data is uploaded here from the American National Election Studies' [Data Center](https://electionstudies.org/data-center/). Specifically, it is the [2016 Time Series Study](https://electionstudies.org/data-center/2016-time-series-study/), the latest election cycle currently available.
 
+The data is in .sav format. The user guide PDF with detailed information on methodology and questions is included as well.
